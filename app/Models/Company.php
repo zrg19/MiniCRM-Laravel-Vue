@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Listeners\NotifyCompanyCreation;
 use App\Mail\NewCompanyAdd;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;

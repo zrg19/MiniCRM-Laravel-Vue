@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\CompanyCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
@@ -49,7 +50,7 @@ class CompanyController extends Controller
         }
 
         if($company->save()) {
-            $company->sendCompanyAddNotification();
+            event(new CompanyCreated($company));
             return $this->apiSuccessResponse('Company has been saved successfully', new CompanyResource($company));
         } else {
             return $this->apiErrorResponse('CS: Something went wrong', [], 403);
